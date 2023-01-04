@@ -1,26 +1,64 @@
-import React from 'react'
-import { ColumnType } from '../utils/enum'
-import { AddIcon } from '@chakra-ui/icons'
-import { Badge, Box, Heading, IconButton, Stack, useColorModeValue } from '@chakra-ui/react'
+import React from "react";
+import { ColumnType } from "../utils/enum";
+import { AddIcon } from "@chakra-ui/icons";
+import { Badge, Box, Heading, IconButton, Stack, useColorModeValue } from "@chakra-ui/react";
+import { TaskModel } from "../utils/models";
+import Task from "./Task";
 
 const ColumnColorScheme: Record<ColumnType, string> = {
-    Todo: 'gray',
-    'In Progress': 'blue',
-    Blocked: 'red',
-    Completed: 'green'
-}
+  Todo: "gray",
+  "In Progress": "blue",
+  Blocked: "red",
+  Completed: "green",
+};
 
-const Column = ({column}: {column: ColumnType}) => {
+const mockTasks: TaskModel[] = [
+  {
+    id: "1",
+    title: "Task 1",
+    column: ColumnType.TO_DO,
+    color: "red.300",
+  },
+  {
+    id: "2",
+    title: "Task 2",
+    column: ColumnType.TO_DO,
+    color: "blue.300",
+  },
+  {
+    id: "3",
+    title: "Task 3",
+    column: ColumnType.TO_DO,
+    color: "green.300",
+  },
+];
+
+const Column = ({ column }: { column: ColumnType }) => {
+  const columnTasks = mockTasks.map((task, index) => <Task task={task} index={index} key={task.id} />);
   return (
-      <Box>
-          <Heading>
-              <Badge>
-                  {column}
-              </Badge>
-          </Heading>
-      
+    <Box>
+      <Heading fontSize="md" mb={4} letterSpacing="wide">
+        <Badge px={2} py={1} rounded="lg" colorScheme={ColumnColorScheme[column]}>
+          {column}
+        </Badge>
+      </Heading>
+      <IconButton
+        size="xs"
+        w="full"
+        color={useColorModeValue("gray.500", "gray.400")}
+        bgColor={useColorModeValue("gray.100", "gray.700")}
+        _hover={{ bgColor: useColorModeValue("gray.200", "gray.600") }}
+        py={2}
+        variant="solid"
+        colorScheme="black"
+        icon={<AddIcon />}
+        aria-label="add-task"
+      />
+      <Stack direction={{ base: "row", md: "column" }} h={{ base: 300, md: 600 }} p={4} mt={2} bgColor={useColorModeValue("gray.50", "gray.900")} rounded="lg" boxShadow="md" overflow="auto" spacing={4}>
+        {columnTasks}
+      </Stack>
     </Box>
-  )
-}
+  );
+};
 
-export default Column
+export default Column;
