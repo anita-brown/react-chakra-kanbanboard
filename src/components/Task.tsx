@@ -8,7 +8,8 @@ type TaskProps = {
   task: TaskModel;
 };
 
-const Task = ({index, task}: TaskProps) => {
+const Task = ({ index, task }: TaskProps) => {
+    
     return (
         <Box as='div' role='group' position='relative' rounded='lg' w={200} pl={3} pr={7} pt={3} pb={1} boxShadow="xl" cursor="grab" bgColor={task.color}>
             <IconButton position='absolute' top={0} right={0} zIndex={100} aria-label="delete-task" size='md' colorScheme='solid' color="gray.700" icon={<DeleteIcon />} opacity={0} _groupHover={{ opacity: 1 }} />

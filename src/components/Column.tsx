@@ -34,6 +34,11 @@ const mockTasks: TaskModel[] = [
 ];
 
 const Column = ({ column }: { column: ColumnType }) => {
+
+  const handleAddTask = (column: ColumnType) => { 
+    console.log("Add task to column", column)
+  }
+  
   const columnTasks = mockTasks.map((task, index) => <Task task={task} index={index} key={task.id} />);
   return (
     <Box>
