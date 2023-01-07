@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { ColumnType } from "../utils/enum";
 import { pickChakraRandomColor, swap } from "../utils/helper";
 import { TaskModel } from "../utils/models";
+// import debug from '../utils/logging'
 import useTaskCollection from "./useTaskCollection";
 const MAX_TASK_PER_COLUMN = 100;
 
@@ -12,12 +13,12 @@ const useColumnTask = (column: ColumnType) => {
     const columnTasks = tasks[column];
 
     const addEmptyTask = useCallback(() => {
-        // debug(`Adding new empty task to ${column} column`);
+        debug(`Adding new empty task to ${column} column`);
         setTasks((allTasks) => {
             const columnTasks = allTasks[column];
 
             if (columnTasks.length > MAX_TASK_PER_COLUMN) {
-                // debug('Too many task!');
+                debug('Too many task!');
                 return allTasks;
             }
 
@@ -37,7 +38,7 @@ const useColumnTask = (column: ColumnType) => {
 
     const deleteTask = useCallback(
         (id: TaskModel['id']) => {
-            // debug(`Removing task ${id}..`);
+            debug(`Removing task ${id}..`);
             setTasks((allTasks) => {
                 const columnTasks = allTasks[column];
                 return {
@@ -51,7 +52,7 @@ const useColumnTask = (column: ColumnType) => {
 
     const updateTask = useCallback(
         (id: TaskModel['id'], updatedTask: Omit<Partial<TaskModel>, 'id'>) => {
-            // debug(`Updating task ${id} with ${JSON.stringify(updateTask)}`);
+            debug(`Updating task ${id} with ${JSON.stringify(updateTask)}`);
             setTasks((allTasks) => {
                 const columnTasks = allTasks[column];
                 return {
