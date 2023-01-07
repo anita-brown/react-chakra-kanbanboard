@@ -5,6 +5,7 @@ import { Badge, Box, Heading, IconButton, Stack, useColorModeValue } from "@chak
 import { TaskModel } from "../utils/models";
 import Task from "./Task";
 import useColumnTask from "../hooks/useColumnTask";
+import useColumnDrop from "../hooks/useColumnDrop";
 const ColumnColorScheme: Record<ColumnType, string> = {
   Todo: "gray",
   "In Progress": "blue",
@@ -34,8 +35,8 @@ const mockTasks: TaskModel[] = [
 ];
 
 const Column = ({ column }: { column: ColumnType }) => {
-  
-    const { tasks, addEmptyTask, deleteTask, dropTaskFrom, swapTasks, updateTask } = useColumnTask(column);
+  const { tasks, addEmptyTask, deleteTask, dropTaskFrom, swapTasks, updateTask } = useColumnTask(column);
+  const { dropRef, isOver } = useColumnDrop(column, dropTaskFrom);
 
   const ColumnTasks = tasks.map((task, index) => <Task key={task.id} task={task} index={index} onDropHover={swapTasks} onUpdate={updateTask} onDelete={deleteTask} />);
 
