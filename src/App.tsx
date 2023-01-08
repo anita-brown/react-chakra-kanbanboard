@@ -5,14 +5,12 @@ import Task from "./components/Task";
 import { ColumnType } from "./utils/enum";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import DarkModeIconButton from "./components/DarkModeIconButton";
 
 function App() {
-
-  
-  
   return (
     <main>
-      <Heading fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }} fontWeight="bold" textAlign="center" bgGradient="linear(to-l, #7928CA, #FF0080)" bgClip="text" mt={4}>
+      <Heading fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }} fontWeight="bold" textAlign="center" bgGradient="linear(to-l, #7928CA, #FF0080)" bgClip="text" mt={4}>
         Welcome to DnD Kanban
       </Heading>
       <DarkModeIconButton position="absolute" top={0} right={2} />
@@ -27,7 +25,7 @@ function App() {
         </Container>
       </DndProvider>
     </main>
-  );
+  )
 }
 
 export default App;
